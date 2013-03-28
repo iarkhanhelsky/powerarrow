@@ -1,5 +1,5 @@
 #! /bin/bash
-WALLPAPERS="/home/rom/.config/awesome/wallpapers/"
+WALLPAPERS="/home/dm/Pictures/Wallpapers/"
 ALIST=( `ls -w1 $WALLPAPERS` )
 RANGE=${#ALIST[@]}
 let "number = $RANDOM"
