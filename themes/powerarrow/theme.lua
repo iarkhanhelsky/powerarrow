@@ -16,7 +16,7 @@ theme = {}
 
 theme.wallpaper_cmd = { "awsetbg /home/dm/.config/awesome/themes/powerarrow/wallpapers/wallpaper-2552963.jpg" }
 
-theme.font                                  = "Terminus 10"
+theme.font                                  = "Monospaced Bold 8"
 theme.fg_normal                             = "#FFFFFF"
 theme.fg_focus                              = "#F0DFAF"
 theme.fg_urgent                             = "#CC9393"
@@ -24,7 +24,7 @@ theme.bg_normal                             = "#222222"
 theme.bg_focus                              = "#1E2320"
 theme.bg_urgent                             = "#3F3F3F"
 theme.border_width                          = "1"
-theme.border_normal                         = "#3F3F3F"
+theme.border_normal                         = "#000000"
 theme.border_focus                          = "#6F6F6F"
 theme.border_marked                         = "#CC9393"
 theme.titlebar_bg_focus                     = "#3F3F3F"

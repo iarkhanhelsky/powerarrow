@@ -47,18 +47,8 @@ editor        = os.getenv("EDITOR") or "vim"
 editor_cmd    = terminal .. " -e " .. editor
 
 terminalr     = "sudo terminal --default-working-directory=/root/ --geometry=200x49+80+36"
-configuration = "TERM=screen-256color lilyterm -T 'Awesome Configuration' -g 228x62+0+16 -x ~/.gem/ruby/1.9.1/bin/mux start configuration"
-rttmux        = "sudo gnome-terminal --geometry=220x59+20+36 --default-working-directory=/root/ -x tmux -2"
-ttmux         = "lilyterm -T tmux -g 221x60+20+36 -e tmux -2"
-tetmux        = "terminal --geometry=189x54+20+36 -x tmux -2"
-sakura        = "sakura -c 222 -r 60 --geometry=+15+30"
-lilyterm      = "lilyterm -g 221x60+20+36"
-musicplr      = "lilyterm -T Music -g 130x34-320+16 -e ncmpcpp"
-iptraf        = "lilyterm -T 'IP traffic monitor' -g 180x54-20+34 -e sudo iptraf-ng -i all"
-mailmutt      = "lilyterm -T 'Mutt' -g 140x44-20+34 -e mutt"
-chat          = "TERM=screen-256color lilyterm -T 'Chat' -g 228x62+0+16 -x ~/.gem/ruby/1.9.1/bin/mux start chat"
 browser       = "google-chrome"
-fm            = "nautilus"
+fm            = "caja"
 
 local sys = {}
 function sys.suspend()
@@ -74,7 +64,7 @@ function sys.shutdown()
     exec('dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop')
 end
 function sys.logout()
-    exec('gnome-session-quit')
+    exec('mate-session-quit')
 end
 function sys.lock()
     exec('xscreensaver-command -lock')
@@ -103,9 +93,6 @@ end
   
 -- }}}
 
---{{---| Couth Alsa volume applet |-----------------------------------------------------------------
-
---couth.CONFIG.ALSA_CONTROLS = { 'Master', 'PCM', 'Headphone' }
 
 --{{---| Table of layouts |-------------------------------------------------------------------------
 
@@ -134,17 +121,6 @@ naughty.config.presets.normal.opacity      = 0.7
 naughty.config.presets.low.opacity         = 0.7
 naughty.config.presets.critical.opacity    = 0.7
 
--- {{{ Tags
- -- Define a tag table which will hold all screen tags.
--- tags = {
---   names  = { "α", "β", "γ", "δ", "φ", "χ", "ψ", "ω" },
---   layout = { layouts[4], layouts[1], layouts[1], layouts[1], layouts[2], layouts[1],
---              layouts[1], layouts[2]
--- }}
--- for s = 1, screen.count() do
-     -- Each screen has its own tag table.
---     tags[s] = awful.tag(tags.names, s, tags.layout)
--- end
 
 tags = {}
 for s = 1, screen.count() do
@@ -156,167 +132,16 @@ end
 --{{---| Menu |-------------------------------------------------------------------------------------
 
 myawesomemenu = {
-  {"edit config",           "sublime_text /home/apavlov/.config/awesome/rc.lua"},
-  {"edit theme",            "sublime_text /home/apavlov/.config/awesome/themes/powerarrow/theme.lua"},
+  {"edit config",           "subl /home/dm/.config/awesome/rc.lua"},
+  {"edit theme",            "subl /home/dm/.config/awesome/themes/powerarrow/theme.lua"},
   {"hibernate",             "sudo pm-hibernate"},
   {"restart",               awesome.restart },
   {"reboot",                "sudo reboot"},
   {"quit",                  awesome.quit }
 }
 
-docsmenu = {
-  {" C",                    "/home/rom/Tools/doc_c", beautiful.c_icon},
-  {" JavaScript",           "/home/rom/Tools/doc_js", beautiful.js_icon},
-  {" Ruby",                 "/home/rom/Tools/doc_ruby", beautiful.ruby_icon} 
-}
-
-learningmenu = {
-  {" C",                    "/home/rom/Books/C.sh", beautiful.c_icon},
-  {" JavaScript",           "/home/rom/Books/JavaScrip.sh", beautiful.js_icon},
-  {" Ruby On Rails",        "/home/rom/Books/RubyOnRails.sh", beautiful.ruby_icon}
-}
-
-mybooksmenu = {
-  {" Documentation",        docsmenu, beautiful.docsmenu_icon},
-  {" Learning",             learningmenu, beautiful.learning_icon},
-  {"                                                            "}, 
-  {" Assembler",            fm .. " ~/Books/Assembler/", beautiful.assembler_icon},
-  {" C",                    fm .. " ~/Books/C/", beautiful.c_icon},
-  {" C++",                  fm .. " ~/Books/C++/", beautiful.cpp_icon},
-  {" D",                    fm .. " ~/Books/D/", beautiful.dlang_icon},
-  {" Databases",            fm .. " ~/Books/Databases/", beautiful.databases_icon},
-  {" Erlang",               fm .. " ~/Books/Erlang/", beautiful.erlang_icon},
-  {" Java",                 fm .. " ~/Books/Java/", beautiful.java_icon},
-  {" JavaScript",           fm .. " ~/Books/JavaScript/", beautiful.js_icon},
-  {" Linux",                fm .. " ~/Books/Linux/", beautiful.linux_icon},
-  {" Markup",               fm .. " ~/Books/HTML-CSS-XML/", beautiful.markup_icon},
-  {" Misc",                 fm .. " ~/Books/Misc/"},
-  {" Mobile Apps",          fm .. " ~/Books/Mobile-Apps/", beautiful.androidmobile_icon},
-  {" Objective-C",          fm .. " ~/Books/Objective-C/"},
-  {" Python",               fm .. " ~/Books/Python/", beautiful.py_icon},
-  {" Regexp",               fm .. " ~/Books/Regexp/"},
-  {" Ruby",                 fm .. " ~/Books/Ruby/", beautiful.ruby_icon},
-  {" VCS",                  fm .. " ~/Books/VCS"}
-}
-
-myedumenu = {
-  {" Anki",                 "anki", beautiful.anki_icon},
-  -- {" Celestia",             "celestia", beautiful.celestia_icon},
-  -- {" Geogebra",             "geogebra", beautiful.geogebra_icon},
-  --{" CherryTree",           "cherrytree", beautiful.cherrytree_icon},
-  --{" Free42dec",            "/home/rom/Tools/Free42Linux/gtk/free42dec", beautiful.free42_icon},
-  {" GoldenDict",           "goldendict", beautiful.goldendict_icon},
-  {" Qalculate",            "qalculate-gtk", beautiful.qalculate_icon},
-  --{" Stellarium",           "stellarium", beautiful.stellarium_icon},
-  --{" Vym",                  "vym", beautiful.vym_icon},
-  --{" Wolfram Mathematica",  "/home/rom/Tools/Wolfram/Mathematica", beautiful.mathematica_icon},
-  --{" XMind",                "xmind", beautiful.xmind_icon}
-}
-
-mydevmenu = {
---  {" Android SDK Updater",  "android", beautiful.android_icon},
---  {" Eclipse",              "/home/rom/Tools/eclipse/eclipse", beautiful.eclipse_icon},
---  {" Emacs",                "emacs", beautiful.emacs_icon},
---  {" GHex",                 "ghex", beautiful.ghex_icon},	
-  {" IntellijIDEA",         "/usr/lib/idea/bin/idea.sh", beautiful.ideaUE_icon},
---  {" Kdiff3",               "kdiff3", beautiful.kdiff3_icon},
-  {" Meld",                 "meld", beautiful.meld_icon},
---  {" pgAdmin",              "pgadmin3", beautiful.pgadmin3_icon},
---  {" Qt Creator",           "qtcreator", beautiful.qtcreator_icon},
---  {" RubyMine",             "/home/rom/Tools/rubymine.run", beautiful.rubymine_icon},
-  {" SublimeText",          "sublime_text", beautiful.sublime_icon},
---  {" Tkdiff",               "tkdiff", beautiful.tkdiff_icon}
-}
-
-mygraphicsmenu = {
-  {" Character Map",        "gucharmap", beautiful.gucharmap_icon},
-  {" Fonty Python",         "fontypython", beautiful.fontypython_icon},
-  {" gcolor2",              "gcolor2", beautiful.gcolor_icon},
-  {" Gpick",                "gpick", beautiful.gpick_icon},
-  {" Gimp",                 "gimp", beautiful.gimp_icon},
---  {" Inkscape",             "inkscape", beautiful.inkscape_icon},
---  {" recordMyDesktop",      "gtk-recordMyDesktop", beautiful.recordmydesktop_icon},
---  {" Screengrab",           "screengrab", beautiful.screengrab_icon},
---  {" Xmag",                 "xmag", beautiful.xmag_icon},
---  {" XnView",               "/home/rom/Tools/XnView/xnview.sh", beautiful.xnview_icon}
-}
-
-mymultimediamenu = {
---  {" Audacious",            "audacious", beautiful.audacious_icon},
-  {" DeadBeef",             "deadbeef", beautiful.deadbeef_icon},
---  {" UMPlayer",             "umplayer", beautiful.umplayer_icon},
-  {" VLC",                  "vlc", beautiful.vlc_icon}
-}
-
-myofficemenu = {
-  {" Acrobat Reader",       "acroread", beautiful.acroread_icon},
-  {" DjView",               "djview", beautiful.djview_icon},
---  {" KChmViewer",           "kchmviewer", beautiful.kchmviewer_icon},
- -- {" Leafpad",              "leafpad", beautiful.leafpad_icon},
-  {" LibreOffice Base",     "libreoffice --base", beautiful.librebase_icon},
-  {" LibreOffice Calc",     "libreoffice --calc", beautiful.librecalc_icon},
-  {" LibreOffice Draw",     "libreoffice --draw", beautiful.libredraw_icon},
-  {" LibreOffice Impress",  "libreoffice --impress", beautiful.libreimpress_icon},
-  {" LibreOffice Math",     "libreoffice --math", beautiful.libremath_icon},	
-  {" LibreOffice Writer",   "libreoffice --writer", beautiful.librewriter_icon},
---  {" Qpdfview",             "qpdfview", beautiful.qpdfview_icon},
---  {" ScanTailor",           "scantailor", beautiful.scantailor_icon},
---  {" Sigil",                "sigil", beautiful.sigil_icon}, 
---  {" TeXworks",             "texworks", beautiful.texworks_icon}
-}
-
-mywebmenu = {
-  {" Chrome",               "google-chrome", beautiful.chromium_icon},
-  {" Droppox",              "dropbox", beautiful.dropbox_icon},
-  --{" Dwb",                  "dwb", beautiful.dwb_icon},
-  --{" Filezilla",            "filezilla", beautiful.filezilla_icon},
-  {" Firefox",              "firefox", beautiful.firefox_icon},
-  --{" Gajim",                "gajim", beautiful.gajim_icon},
-  --{" QuiteRSS",             "quiterss", beautiful.quiterss_icon},
-  {" Luakit",               "luakit", beautiful.luakit_icon},
-  --{" Opera",                "opera", beautiful.opera_icon},
-  --{" Qbittorrent",          "qbittorrent", beautiful.qbittorrent_icon},
-  {" Skype",                "skype", beautiful.skype_icon},
-  --{" Tor",                  "/home/rom/Tools/tor-browser_en-US/start-tor-browser", beautiful.vidalia_icon},
-  {" Thunderbird",          "thunderbird", beautiful.thunderbird_icon},
-  --{" Weechat",              "lilyterm -x weechat-curses", beautiful.weechat_icon}
-}
-
-mysettingsmenu = {
-  --{" CUPS Settings",        "sudo system-config-printer", beautiful.cups_icon},
-  --{" JDK6 Settings",        "/opt/sun-jdk-1.6.0.37/bin/ControlPanel", beautiful.java_icon},
-  --{" JDK7 Settings",        "/opt/oracle-jdk-bin-1.7.0.9/bin/ControlPanel", beautiful.java_icon},
-  --{" Nvidia Settings",      "sudo nvidia-settings", beautiful.nvidia_icon},
-  --{" Qt Configuration",     "qtconfig", beautiful.qt_icon},    
-  --{" WICD",                 terminal .. " -x wicd-curses", beautiful.wicd_icon}
-}
-
-mytoolsmenu = {
-  {" Gparted",              "sudo gparted", beautiful.gparted_icon},
-  {" PeaZip",               "peazip", beautiful.peazip_icon},
-  {" TeamViewer",           "teamviewer", beautiful.teamviewer_icon},
-  --{" VirtualBox",           "VirtualBox", beautiful.virtualbox_icon},
-  --{" Windows XP",           'VirtualBox --startvm "cb226b1a-3e7a-4a5c-b336-fc080ff687d1"', beautiful.windows_icon},
-  -- {" Vmware Workstation",   "vmware", beautiful.vmware_icon},
-  --{" UNetbootin",           "sudo unetbootin", beautiful.unetbootin_icon},
-  --{" Xfburn",               "xfburn", beautiful.xfburn_icon}
-}
-
 mymainmenu = awful.menu({ items = { 
   {" awesome",             myawesomemenu, beautiful.awesome_icon },
-  {" books",                mybooksmenu, beautiful.books_icon},
-  {" development",          mydevmenu, beautiful.mydevmenu_icon},
-  {" education",            myedumenu, beautiful.myedu_icon},
-  {" graphics",             mygraphicsmenu, beautiful.mygraphicsmenu_icon},
-  {" multimedia",           mymultimediamenu, beautiful.mymultimediamenu_icon},	    
-  {" office",               myofficemenu, beautiful.myofficemenu_icon},
-  {" tools",                mytoolsmenu, beautiful.mytoolsmenu_icon},
-  {" web",                  mywebmenu, beautiful.mywebmenu_icon},
-  {" settings",             mysettingsmenu, beautiful.mysettingsmenu_icon},
-  {" calc",                 "/usr/bin/gcalctool", beautiful.galculator_icon},
-  {" htop",                 terminal .. " -x htop", beautiful.htop_icon},
-  {" sound",                "qasmixer", beautiful.wmsmixer_icon},
-  {" file manager",         "nautilus", beautiful.spacefm_icon},
   {" root terminal",        "sudo " .. terminal, beautiful.terminalroot_icon},
   {" terminal",             terminal, beautiful.terminal_icon} 
 }
@@ -381,28 +206,11 @@ for s = 1, screen.count() do
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
 
---{{---| Chat widget |------------------------------------------------------------------------------
 
-chaticon = widget ({type = "imagebox" })
-chaticon.image = image(beautiful.widget_chat)
-chaticon:buttons(awful.util.table.join(awful.button({ }, 1,
-function () awful.util.spawn_with_shell(chat) end)))
-
---{{---| Mail widget |------------------------------------------------------------------------------
-
-mailicon = widget ({type = "imagebox" })
-mailicon.image = image(beautiful.widget_mail)
-mailicon:buttons(awful.util.table.join(awful.button({ }, 1, 
-function () awful.util.spawn_with_shell(mailmutt) end)))
-
---{{---| Music widget |-----------------------------------------------------------------------------
-
-music = widget ({type = "imagebox" })
-music.image = image(beautiful.widget_music)
 --{{---| MEM widget |-------------------------------------------------------------------------------
 
 memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" font="Terminus 12"> <span font="Terminus 9" color="#EEEEEE" background="#777E76">$2MB </span></span>', 13)
+vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE" background="#777E76">$2MB </span></span>', 13)
 memicon = widget ({type = "imagebox" })
 memicon.image = image(beautiful.widget_mem)
 
@@ -410,19 +218,14 @@ memicon.image = image(beautiful.widget_mem)
 
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu,
-'<span background="#4B696D" font="Terminus 12"> <span font="Terminus 9" color="#DDDDDD">$2% <span color="#888888">·</span> $3% </span></span>', 3)
+'<span background="#4B696D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#DDDDDD">$2% <span color="#888888">·</span> $3% </span></span>', 3)
 cpuicon = widget ({type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
---sensors = widget({ type = "textbox" })
---vicious.register(sensors, vicious.widgets.sensors)
-tempicon = widget ({type = "imagebox" })
-tempicon.image = image(beautiful.widget_temp)
-
 --{{---| FS's widget / udisks-glue menu |-----------------------------------------------------------
 
 fswidget = widget({ type = "textbox" })
 vicious.register(fswidget, vicious.widgets.fs,
-'<span background="#D0785D" font="Terminus 12"> <span font="Terminus 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 8)
+'<span background="#D0785D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 8)
 
 
 --{{---| Battery widget |---------------------------------------------------------------------------  
@@ -430,14 +233,14 @@ vicious.register(fswidget, vicious.widgets.fs,
 baticon = widget ({type = "imagebox" })
 baticon.image = image(beautiful.widget_battery)
 batwidget = widget({ type = "textbox" })
-vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="Terminus 12"> <span font="Terminus 9" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 1, "BAT1" )
+vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 1, "BAT1" )
 
 --{{---| Net widget |-------------------------------------------------------------------------------
 
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, 
 vicious.widgets.net,
-'<span background="#C2C2A4" font="Terminus 12"> <span font="Terminus 9" color="#FFFFFF">${wlan0 down_kb} ↓↑ ${wlan0 up_kb}</span> </span>', 3)
+'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#FFFFFF">${wlan0 down_kb} ↓↑ ${wlan0 up_kb}</span> </span>', 3)
 neticon = widget ({type = "imagebox" })
 neticon.image = image(beautiful.widget_net)
 
@@ -446,7 +249,7 @@ date_format = "%T"
 -- Initialize widget
 datewidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(datewidget, vicious.widgets.date, '<span background="#777E76" font="Terminus 12"> <span font="Terminus 10" color="#FFFFFF">%T</span> </span>', 1)
+vicious.register(datewidget, vicious.widgets.date, '<span background="#777E76" font="Monospased Bold 12"> <span font="Monospased Bold 10" color="#FFFFFF">%T</span> </span>', 1)
 
 calendar.addCalendarToWidget(datewidget, setFg("green", "<b>%s</b>"))
 -- }}}
@@ -457,9 +260,9 @@ calendar.addCalendarToWidget(datewidget, setFg("green", "<b>%s</b>"))
 spr = widget({ type = "textbox" })
 spr.text = ' '
 sprd = widget({ type = "textbox" })
-sprd.text = '<span background="#313131" font="Terminus 12"> </span>'
+sprd.text = '<span background="#313131" font="Monospased Bold 12"> </span>'
 spr3f = widget({ type = "textbox" })
-spr3f.text = '<span background="#777e76" font="Terminus 12"> </span>'
+spr3f.text = '<span background="#777e76" font="Monospased Bold 12"> </span>'
 arr1 = widget ({type = "imagebox" })
 arr1.image = image(beautiful.arr1)
 arr2 = widget ({type = "imagebox" })
@@ -493,8 +296,6 @@ mywibox[s].widgets = {
      spr3f,
      datewidget,
      spr3f, 
-     -- arrl, 
-     -- my_cal.widget,
      arr2, 
      netwidget,
      neticon,
@@ -503,10 +304,7 @@ mywibox[s].widgets = {
      baticon,
      arr4, 
      fswidget,
-     --udisks_glue.widget,
      arr5,
-    -- sensors,
- --    tempicon,
      arr6,
      cpuwidget,
      cpuicon,
@@ -514,11 +312,6 @@ mywibox[s].widgets = {
      memwidget,
      memicon,
      arr8,
-     --task_warrior.widget,
-     arr9,
-     music,
-     arr0,
-     mailicon, 
      arr9,
      spr,
      s == 1 and mysystray, spr or nil, mytasklist[s], 
