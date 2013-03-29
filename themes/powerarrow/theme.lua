@@ -15,7 +15,7 @@ dorange  = "#d0785d"
 
 theme = {}
 
-theme.wallpaper_cmd = { "awsetbg /home/dm/.config/awesome/themes/powerarrow/wallpapers/wallpaper-2552963.jpg" }
+theme.wallpaper_cmd = { "awsetbg /home/dm/.config/awesome/themes/powerarrow/wallpapers/minimal.jpg" }
 
 theme.font                                  = "Monospaced Bold 8"
 theme.fg_normal                             = "#FFFFFF"

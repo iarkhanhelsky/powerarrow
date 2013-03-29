@@ -210,7 +210,7 @@ for s = 1, screen.count() do
 --{{---| MEM widget |-------------------------------------------------------------------------------
 
 memwidget = widget({ type = "textbox" })
-vicious.register(memwidget, vicious.widgets.mem, '<span background="#777E76" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE" background="#777E76">$2MB </span></span>', 13)
+vicious.register(memwidget, vicious.widgets.mem, string.format('<span background="#777E76" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE" background="#777E76">%4sMB </span></span>', "$2"), 13)
 memicon = widget ({type = "imagebox" })
 memicon.image = image(beautiful.widget_mem)
 
@@ -311,7 +311,7 @@ mywibox[s].widgets = {
      arr7,
      memwidget,
      memicon,
-     arr8,
+     arr8,     
      arr9,
      spr,
      s == 1 and mysystray, spr or nil, mytasklist[s], 
@@ -537,7 +537,7 @@ function run_oncewa(prg) if not prg then do return nil end end
 run_once("skype")
 run_once("wmname LG3D")
 run_once("mate-session")
-run_once("google-chrome")
+run_once("chrome")
 
 
 --{{Xx----------------------------------------------------------------------------------------------
