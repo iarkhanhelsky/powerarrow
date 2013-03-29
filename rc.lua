@@ -534,15 +534,11 @@ function run_oncewa(prg) if not prg then do return nil end end
 
 --{{--| Autostart |---------------------------------------------------------------------------------
 
---os.execute("pkill compton")
---os.execute("setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps,compose:ralt' &")
---run_once("udisks-glue")
+run_once("skype")
+run_once("wmname LG3D")
+run_once("mate-session")
+run_once("google-chrome")
 
--- os.execute("sudo /etc/init.d/dcron start &")
---run_once("kbdd")
---run_once("qlipper")
---run_once("compton")
---require('autorun')
 
 --{{Xx----------------------------------------------------------------------------------------------
 
