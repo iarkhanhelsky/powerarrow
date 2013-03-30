@@ -308,14 +308,12 @@ mywibox[s].widgets = {
      fswidget,
      fsicon,
      arr5,
-     arr6,
      cpuwidget,
      cpuicon,
      arr7,
      memwidget,
      memicon,
      arr8,     
-     arr9,
      spr,
      s == 1 and mysystray, spr or nil, mytasklist[s], 
      layout = awful.widget.layout.horizontal.rightleft } end
@@ -376,6 +374,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+
+    awful.key({ }, "XF86AudioRaiseVolume", function ()
+    awful.util.spawn("amixer set Master 9%+", false) end),
+    awful.key({ }, "XF86AudioLowerVolume", function ()
+    awful.util.spawn("amixer set Master 9%-", false) end),
+    awful.key({ }, "XF86AudioMute", function ()
+    awful.util.spawn("amixer sset Master toggle", false) end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -535,7 +540,9 @@ function run_oncewa(prg) if not prg then do return nil end end
 --{{--| Autostart |---------------------------------------------------------------------------------
 
 run_once("skype")
-run_once("mate-session")
+run_once("calised")
+run_once("dropboxd")
+run_once("calise --no-gui")
 run_once("chrome")
 
 
