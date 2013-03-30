@@ -223,9 +223,11 @@ cpuicon = widget ({type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
 --{{---| FS's widget / udisks-glue menu |-----------------------------------------------------------
 
+fsicon = widget ({type = "imagebox" })
+fsicon.image = image(beautiful.widget_hdd)
 fswidget = widget({ type = "textbox" })
 vicious.register(fswidget, vicious.widgets.fs,
-'<span background="#D0785D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 8)
+'<span background="#D0785D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 11)
 
 
 --{{---| Battery widget |---------------------------------------------------------------------------  
@@ -233,14 +235,14 @@ vicious.register(fswidget, vicious.widgets.fs,
 baticon = widget ({type = "imagebox" })
 baticon.image = image(beautiful.widget_battery)
 batwidget = widget({ type = "textbox" })
-vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 1, "BAT1" )
+vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 3, "BAT1" )
 
 --{{---| Net widget |-------------------------------------------------------------------------------
 
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, 
-vicious.widgets.net,
-'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#FFFFFF">${wlan0 down_kb} ↓↑ ${wlan0 up_kb}</span> </span>', 3)
+vicious.widgets.wifi,
+'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${link}%</span> </span>', 13, "wlan0")
 neticon = widget ({type = "imagebox" })
 neticon.image = image(beautiful.widget_net)
 
@@ -304,6 +306,7 @@ mywibox[s].widgets = {
      baticon,
      arr4, 
      fswidget,
+     fsicon,
      arr5,
      arr6,
      cpuwidget,
@@ -467,14 +470,10 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = false, tag=tags[8] }},
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
     { rule = { class = "Clementine" },
        properties = { tag = tags[1][3] } },
     { rule = { class = "Eclipse" },
        properties = { tag = tags[1][4] } },
-
     { rule = { class = "Pidgin" },
        properties = { tag = tags[1][2] } },
     { rule = { class = "Google-chrome" },
@@ -536,7 +535,6 @@ function run_oncewa(prg) if not prg then do return nil end end
 --{{--| Autostart |---------------------------------------------------------------------------------
 
 run_once("skype")
-run_once("wmname LG3D")
 run_once("mate-session")
 run_once("chrome")
 
