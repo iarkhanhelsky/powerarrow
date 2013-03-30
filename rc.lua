@@ -478,7 +478,7 @@ awful.rules.rules = {
     { rule = { class = "Pidgin" },
        properties = { tag = tags[1][2] } },
     { rule = { class = "Google-chrome" },
-       properties = { tag = tags[1][1] } },
+       properties = { tag = tags[1][1] }, border_width = 0, padding = 0 },
     { rule = { class = "Sakura" },
        properties = { tag = tags[1][5] } },
     { rule = { class = "java-lang-Thread"},
