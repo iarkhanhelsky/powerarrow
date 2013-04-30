@@ -242,7 +242,7 @@ vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" fo
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget, 
 vicious.widgets.wifi,
-'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${link}%</span> </span>', 13, "wlan0")
+'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${linp}%</span> </span>', 13, "wlan0")
 neticon = widget ({type = "imagebox" })
 neticon.image = image(beautiful.widget_net)
 
