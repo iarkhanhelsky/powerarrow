@@ -544,7 +544,7 @@ run_once("calised")
 run_once("dropboxd")
 run_once("calise --no-gui")
 run_once("chrome")
-
+run_once("udiskie")
 
 --{{Xx----------------------------------------------------------------------------------------------
 
