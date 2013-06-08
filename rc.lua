@@ -90,7 +90,7 @@ function show_window_info(c)
     timeout = 30
   })
 end
-  
+
 -- }}}
 
 
@@ -140,10 +140,10 @@ myawesomemenu = {
   {"quit",                  awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { 
+mymainmenu = awful.menu({ items = {
   {" awesome",             myawesomemenu, beautiful.awesome_icon },
   {" root terminal",        "sudo " .. terminal, beautiful.terminalroot_icon},
-  {" terminal",             terminal, beautiful.terminal_icon} 
+  {" terminal",             terminal, beautiful.terminal_icon}
 }
 })
 
@@ -230,7 +230,7 @@ vicious.register(fswidget, vicious.widgets.fs,
 '<span background="#D0785D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 11)
 
 
---{{---| Battery widget |---------------------------------------------------------------------------  
+--{{---| Battery widget |---------------------------------------------------------------------------
 
 baticon = widget ({type = "imagebox" })
 baticon.image = image(beautiful.widget_battery)
@@ -240,7 +240,7 @@ vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" fo
 --{{---| Net widget |-------------------------------------------------------------------------------
 
 netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, 
+vicious.register(netwidget,
 vicious.widgets.wifi,
 '<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${linp}%</span> </span>', 13, "wlan0")
 neticon = widget ({type = "imagebox" })
@@ -297,14 +297,14 @@ mywibox[s].widgets = {
      arr1,
      spr3f,
      datewidget,
-     spr3f, 
-     arr2, 
+     spr3f,
+     arr2,
      netwidget,
      neticon,
      arr3,
      batwidget,
      baticon,
-     arr4, 
+     arr4,
      fswidget,
      fsicon,
      arr5,
@@ -313,9 +313,9 @@ mywibox[s].widgets = {
      arr7,
      memwidget,
      memicon,
-     arr8,     
+     arr8,
      spr,
-     s == 1 and mysystray, spr or nil, mytasklist[s], 
+     s == 1 and mysystray, spr or nil, mytasklist[s],
      layout = awful.widget.layout.horizontal.rightleft } end
 
 -- {{{ Mouse bindings
@@ -384,7 +384,7 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
-    
+
 
     awful.key({ modkey }, "x",
               function ()
@@ -392,7 +392,7 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)    
+              end)
 )
 
 clientkeys = awful.util.table.join(
@@ -496,18 +496,18 @@ awful.rules.rules = {
   { rule = { name = "Simulator"},
   properties = { tag = tags [1][4], floating = true }}
 
-    
+
 }-- }}}
 
 -- {{{ Focus signal handlers
 client.add_signal("focus",
    function (c)
-    c.border_color = beautiful.border_focus  
+    c.border_color = beautiful.border_focus
     c.opacity = 1
     end)
 client.add_signal("unfocus",
- function (c) 
-  c.border_color = beautiful.border_normal 
+ function (c)
+  c.border_color = beautiful.border_normal
   c.opacity = 0.8
   end)
 -- }}}
@@ -545,6 +545,7 @@ run_once("dropboxd")
 run_once("calise --no-gui")
 run_once("chrome")
 run_once("udiskie")
+run_once("/usr/lib/samsung-tools/session-service.py")
 
 --{{Xx----------------------------------------------------------------------------------------------
 
