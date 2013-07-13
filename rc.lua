@@ -540,12 +540,8 @@ function run_oncewa(prg) if not prg then do return nil end end
 --{{--| Autostart |---------------------------------------------------------------------------------
 
 run_once("skype")
-run_once("calised")
 run_once("dropboxd")
-run_once("calise --no-gui")
-run_once("chrome")
 run_once("udiskie")
-run_once("/usr/lib/samsung-tools/session-service.py")
 
 --{{Xx----------------------------------------------------------------------------------------------
 
