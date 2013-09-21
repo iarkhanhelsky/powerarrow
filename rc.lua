@@ -300,8 +300,8 @@ mywibox[s].widgets = {
      memwidget,
      memicon,
      arr8,
-     spr,
-     s == 1 and mysystray, spr or nil, mytasklist[s],
+     spr,     
+     s == 1 and mysystray, spr or nil, mytasklist[s],     
      layout = awful.widget.layout.horizontal.rightleft } end
 
 -- {{{ Mouse bindings
