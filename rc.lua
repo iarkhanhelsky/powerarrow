@@ -218,7 +218,7 @@ memicon.image = image(beautiful.widget_mem)
 
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu,
-'<span background="#4B696D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#DDDDDD">$2% <span color="#888888">·</span> $3% </span></span>', 3)
+'<span background="#4B696D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#DDDDDD">$2% <span color="#888888">·</span> $3%<span color="#888888">·</span> $4% <span color="#888888">·</span> $5% </span></span>', 3)
 cpuicon = widget ({type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
 --{{---| FS's widget / udisks-glue menu |-----------------------------------------------------------
@@ -227,22 +227,14 @@ fsicon = widget ({type = "imagebox" })
 fsicon.image = image(beautiful.widget_hdd)
 fswidget = widget({ type = "textbox" })
 vicious.register(fswidget, vicious.widgets.fs,
-'<span background="#D0785D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 11)
-
-
---{{---| Battery widget |---------------------------------------------------------------------------
-
-baticon = widget ({type = "imagebox" })
-baticon.image = image(beautiful.widget_battery)
-batwidget = widget({ type = "textbox" })
-vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#FFFFFF" background="#92B0A0">$1$2% </span></span>', 3, "BAT1" )
+'<span background="#D0785D" font="Monospased Bold 12"> <span font="Monospased Bold 9" color="#EEEEEE">${/ avail_gb}GB </span></span>', 11) 
 
 --{{---| Net widget |-------------------------------------------------------------------------------
 
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget,
 vicious.widgets.wifi,
-'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${linp}%</span> </span>', 13, "wlan0")
+'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${linp}%</span> </span>', 13, "eth0")
 neticon = widget ({type = "imagebox" })
 neticon.image = image(beautiful.widget_net)
 
@@ -299,11 +291,7 @@ mywibox[s].widgets = {
      datewidget,
      spr3f,
      arr2,
-     netwidget,
-     neticon,
-     arr3,
-     batwidget,
-     baticon,
+     arr3,    
      arr4,
      fswidget,
      fsicon,
@@ -513,6 +501,8 @@ function run_oncewa(prg) if not prg then do return nil end end
 
 run_once("skype")
 run_once("dropboxd")
+run_once("rescuetime")
+run_once("firefox")
 run_once("udiskie")
 
 --{{Xx----------------------------------------------------------------------------------------------
