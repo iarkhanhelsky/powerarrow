@@ -468,35 +468,7 @@ awful.rules.rules = {
                      focus = true,
                      size_hints_honor = false,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = false, tag=tags[8] }},
-    { rule = { class = "Clementine" },
-       properties = { tag = tags[1][3] } },
-    { rule = { class = "Eclipse" },
-       properties = { tag = tags[1][4] } },
-    { rule = { class = "Pidgin" },
-       properties = { tag = tags[1][2] } },
-    { rule = { class = "Google-chrome" },
-       properties = { tag = tags[1][1] }, border_width = 0, padding = 0 },
-    { rule = { class = "Sakura" },
-       properties = { tag = tags[1][5] } },
-    { rule = { class = "java-lang-Thread"},
-  properties = { tag = tags [1][4]} },
-    { rule = { class = "Gitg"},
-  properties = {tag = tags [1][4]} },
-    { rule = { class = "Qtcreator"},
-  properties = { tag = tags [1][4]} },
-  { rule = { class = "Skype"},
-  properties = { tag = tags [1][2]} },
-  { rule = { name = "Simulator"},
-  properties = { tag = tags [1][4], floating = true }}
-
-
+                     buttons = clientbuttons } }  
 }-- }}}
 
 -- {{{ Focus signal handlers
