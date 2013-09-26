@@ -242,7 +242,7 @@ vicious.register( batwidget, vicious.widgets.bat, '<span background="#92B0A0" fo
 netwidget = widget({ type = "textbox" })
 vicious.register(netwidget,
 vicious.widgets.wifi,
-'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${linp}%</span> </span>', 13, "wlan0")
+'<span background="#C2C2A4" font="Monospased Bold 12"> <span font="Monospased Bold 8" color="#FFFFFF">${linp}%</span> </span>', 13, "wlp1s0")
 neticon = widget ({type = "imagebox" })
 neticon.image = image(beautiful.widget_net)
 
@@ -481,14 +481,10 @@ awful.rules.rules = {
        properties = { tag = tags[1][4] } },
     { rule = { class = "Pidgin" },
        properties = { tag = tags[1][2] } },
-    { rule = { class = "Google-chrome" },
+    { rule = { class = "Firefox" },
        properties = { tag = tags[1][1] }, border_width = 0, padding = 0 },
     { rule = { class = "Sakura" },
-       properties = { tag = tags[1][5] } },
-    { rule = { class = "java-lang-Thread"},
-  properties = { tag = tags [1][4]} },
-    { rule = { class = "Gitg"},
-  properties = {tag = tags [1][4]} },
+       properties = { tag = tags[1][5] } },    
     { rule = { class = "Qtcreator"},
   properties = { tag = tags [1][4]} },
   { rule = { class = "Skype"},
@@ -542,6 +538,8 @@ function run_oncewa(prg) if not prg then do return nil end end
 run_once("skype")
 run_once("dropboxd")
 run_once("udiskie")
+run_once("firefox")
+run_once("xbindkeys")
 
 --{{Xx----------------------------------------------------------------------------------------------
 
