@@ -477,22 +477,18 @@ awful.rules.rules = {
       properties = { floating = false, tag=tags[8] }},
     { rule = { class = "Clementine" },
        properties = { tag = tags[1][3] } },
-    { rule = { class = "Eclipse" },
-       properties = { tag = tags[1][4] } },
-    { rule = { class = "Pidgin" },
-       properties = { tag = tags[1][2] } },
+    { rule = { class = "Plugin-container" },
+        properties = { floating = true } },   
     { rule = { class = "Firefox" },
        properties = { tag = tags[1][1] }, border_width = 0, padding = 0 },
     { rule = { class = "Sakura" },
        properties = { tag = tags[1][5] } },    
     { rule = { class = "Qtcreator"},
-  properties = { tag = tags [1][4]} },
-  { rule = { class = "Skype"},
-  properties = { tag = tags [1][2]} },
-  { rule = { name = "Simulator"},
-  properties = { tag = tags [1][4], floating = true }}
-
-
+        properties = { tag = tags [1][4]} },
+    { rule = { class = "Skype"},
+       properties = { tag = tags [1][2]} },
+    { rule = { name = "Simulator"},
+      properties = { tag = tags [1][4], floating = true }}
 }-- }}}
 
 -- {{{ Focus signal handlers
