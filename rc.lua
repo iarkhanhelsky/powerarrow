@@ -362,10 +362,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
--- {{ Opens Chromium }} --
 
 awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end),
-awful.key({ modkey,        }, "Return", function() awful.util.spawn("sakura") end),
 
 
 -- {{ Shuts down Computer }} --
